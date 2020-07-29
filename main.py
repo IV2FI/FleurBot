@@ -1,5 +1,6 @@
 from config import getApi
 import os
+import sys
 import time
 print()
 
@@ -32,17 +33,21 @@ def start():
     global tweets
     global limitTweets
     global limitSearchs
-    while(True):
-        search("quoi", "100")
+    stop = False
+    while(not stop):
+        try:
+            search("quoi", "100")
+        except:
+            print("Erreur (probablement de quota, on arrete)")
+            stop = True
         if(searchs >= limitSearchs):
             print("Limite atteinte des searchs")
-            time.sleep(60*60*15)
-            searchs = 0
+            stop = True
         elif(tweets >= limitTweets):
             print("Limite atteinte des tweets")
-            time.sleep(60*60*3)
-            tweets = 0
+            stop = True
         print(f"On a tweeté {str(tweets)} fois !")
         time.sleep(5)
+    print("Fini, on attend 3H maintenant et on reprend.")
 
 start()
