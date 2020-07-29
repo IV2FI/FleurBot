@@ -9,8 +9,8 @@ print()
 api = getApi(os.environ['consumer_key'], os.environ['consumer_secret'], os.environ['access_token_key'], os.environ['access_token_secret'])
 tweets = 0
 searchs = 0
-limitTweets = 100
-limitSearchs = 80
+limitTweets = 300
+limitSearchs = 180
 
 def endsWith(sentence, keyword):
     return sentence.endswith(keyword)
